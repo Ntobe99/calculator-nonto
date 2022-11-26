@@ -2,45 +2,57 @@
     max-width: 400px;
     margin: 10vh auto 0 auto;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    
 }
-#display {
+#output {
     text-align: right;
     height: 70px;
     line-height: 70px;
     padding: 16px 8px;
     font-size: 25px;
-    background-color: black;
+    background-color: rgb(40, 39, 39);
     color: white;
 }
+
 .buttons {
     display: grid;
-    border-bottom: 1px solid #999;
-    border-left: 1px solid#999;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+   
+    
 }
-.buttons > div {
-    border-top: 1px solid #999;
-    border-right: 1px solid#999;
-}
-.button {
-      border: 0.5px solid #999;
+
+
+.btn{
+    border: 0.5px solid #999;
     line-height:100px;
     text-align: center;
     font-size: 25px;
     cursor: pointer;
     
-}
-#span {
-    width:200px
-    span: 2px;
+   
     
 }
-#empty{
-    height: 0px;
-    width: 0px;
+.btn-span {
+    grid-column: span 2;
+    border: 0.5px solid #999;
+    line-height:100px;
+    text-align: center;
+    font-size: 25px;
+    cursor: pointer;
+    
+    
 }
-.button:hover {
-    background-color: gray;
+
+
+.btn:hover {
+    background-color: black;
+    color: white;  
+}
+
+.btn-span:hover{
+    background-color: black;
     color: white;
-    
 }
+

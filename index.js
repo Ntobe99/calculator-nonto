@@ -1,35 +1,88 @@
-let display = document.getElementById('display');
-let buttons = Array.from(document.getElementsByClassName('button'));
-buttons.map( button => {
-    button.addEventListener('click', (e) => {
-        switch(e.target.innerText){
-            case 'AC':
-                display.innerText = '';
-                break;
-            case '=':
-                 display.innerText = eval(display.innerText);
-                break;
-            case 'DEL':
-                if (display.innerText){
-                    display.innerText = display.innerText.slice(0, -1);
-                 }
-                break;
-            case '&#247;':
-                 if (display.innerText){
-	                  computation=display.innerText/e.target.innerText;
-	                 }
-	                break ;
-            case '&times;':
-           
+let numRandom = '';
 
-
-
-             
-            default:
-                display.innerText += e.target.innerText;
-        }
-    });
-});
-if(display.innerText=='&#247;'){
-    display.innerText /= e.target.innerText;
+const handleClick = (digit) => {
+    digit = digit.toString();
+    numRandom += digit;
+    updateDisplay();
 }
+
+const getBackspace = () => {
+    numRandom = numRandom.slice(0, numRandom.length - 1);
+    updateDisplay();
+}
+
+const allClear = () => {
+    numRandom = ''
+    updateDisplay();
+}
+
+const updateDisplay = () => {
+    document.getElementById('output').innerHTML = numRandom;
+}
+
+const equalEval = () => {
+    if(numRandom == '' || numRandom== undefined || numRandom.length == 1){
+        return 
+    }
+    operatorArr = ['+','-','x','/'];
+    let numArr = [];
+    let opArr = [];
+    let val = '';
+    for (let x of numRandom){
+        if(operatorArr.includes(x)){
+            numArr.push(parseFloat(val));
+            opArr.push(x);
+            val = '';
+        }
+        else{
+            val+=x;
+        }
+    }
+
+    if(val != ''){
+        numArr.push(parseFloat(val));
+    }
+
+    var result = numArr.shift();
+    for(let i= 0; i < numArr.length; i++){
+        let operator = opArr[i];
+        let b = numArr[i];
+        if(operator == '+'){
+            result = add(result,b)
+        }
+        if(operator == '-'){
+            result = subtract(result,b)
+        }
+        if(operator == 'x'){
+            result = multiply(result,b)
+        }
+        if(operator == '/'){
+            result = divide(result,b)
+        }
+    }
+
+    numRandom = result.toString();
+    updateDisplay();
+    
+}
+
+const add = (a,b) => {
+    const result = a + b;
+    return result;
+}
+
+const subtract = (a,b) => {
+    const result = a - b;
+    return result;
+}
+
+const multiply = (a,b) => {
+    const result = a*b;
+    return result;
+}
+
+const divide = (a,b) => {
+    const result = a/b;
+    return result;
+}
+
